@@ -31,6 +31,7 @@ public class ExecutorExamples {
 		directExecutor.execute(new Task());
 
 		ThreadPerTaskExecutor threadPerTaskExecutor = new ThreadPerTaskExecutor();
+		
 		threadPerTaskExecutor.execute(new Task());
 		threadPerTaskExecutor.execute(new Task());
 	}
