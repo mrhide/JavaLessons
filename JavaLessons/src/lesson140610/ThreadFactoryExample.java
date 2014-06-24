@@ -3,7 +3,6 @@ package lesson140610;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
-
 import lesson140529.Utils;
 
 public class ThreadFactoryExample {
