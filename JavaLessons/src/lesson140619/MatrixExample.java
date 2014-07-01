@@ -27,7 +27,7 @@ public class MatrixExample {
 			}
 			return sum;
 		}
-	}
+	}	
 
 	static double calculate(double d) {
 		double result = 0;
