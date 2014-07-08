@@ -3,13 +3,17 @@ package chat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ChatServer implements Runnable {        // Actor pattern
 
 	List<ChatMember> members = new LinkedList<>();
 	BlockingQueue<Runnable> actions = new LinkedBlockingQueue<>();
-
+	ExecutorService sender = Executors.newCachedThreadPool();
+	
+	
 	public void addMember(final ChatMember member) {
 		actions.add(new Runnable() {
 			public void run() {
@@ -29,9 +33,14 @@ public class ChatServer implements Runnable {        // Actor pattern
 		});
 	}
 
-	public void broadcast(String message) {
-		for (ChatMember member : members) {
-			member.sendMessage(message);
+	public void broadcast(final String message) {
+		for (final ChatMember member : members) {
+			sender.execute(new Runnable() {
+				@Override
+				public void run() {
+					member.sendMessage(message);					
+				}
+			});
 		}
 	}
 

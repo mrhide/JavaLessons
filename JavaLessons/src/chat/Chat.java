@@ -38,7 +38,7 @@ public class Chat {
 		service.execute(server);
 		
 		ChatMember m1 = new ChatMember("Pete");
-		ChatMember m2 = new ChatMember("Ann");
+		ChatMember m2 = new SlowChatMember("Ann");
 		ChatMember m3 = new ChatMember("John");
 		
 		server.addMember(m1);
@@ -53,7 +53,6 @@ public class Chat {
 		service.execute(new MemberImitator(m3));
 
 		Utils.pause(3000);
-		server.removeMember(m1);
 		
 	}
 }
