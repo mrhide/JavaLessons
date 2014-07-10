@@ -25,7 +25,7 @@ public class StringNumbersTest {
 				{2, "два"},
 				{3, "три"},				
 		});
-	}
+	}	
 	
 	public StringNumbersTest(int number, String expected) {
 		_number = number;
