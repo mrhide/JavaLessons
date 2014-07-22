@@ -2,6 +2,8 @@ package tetris;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -24,14 +26,25 @@ public class Tetris {
 		frame.pack();
 		frame.setVisible(true);
 		
+		Kernel kernel = new JavaKernel(panel);
+		
 		Graphics2D graphics = (Graphics2D) panel.getGraphics();
 
 		Model model = new Model();
-		View view = new View(panel);
+		View view = new View(kernel);
 		final Controller controller = new Controller(model, view);
-		view.setEventProcessor(controller);
-		
-		frame.addKeyListener(view);
+				
+		frame.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+					controller.moveLeft();
+				}
+				if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+					controller.moveRight();
+				}
+			}
+		});
 
 		ScheduledExecutorService service = Executors
 				.newSingleThreadScheduledExecutor();
@@ -41,7 +54,7 @@ public class Tetris {
 			public void run() {
 				controller.slideDownOneRow();
 			}			
-		}, 1, 1, TimeUnit.SECONDS);
+		}, 500, 200, TimeUnit.MILLISECONDS);
 	}
 
 }
