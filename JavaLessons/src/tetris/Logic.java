@@ -28,6 +28,7 @@ public class Logic implements EventProcessor {
 	public void slideDownOneRow() {
 		if(state.hasConflictWhenShifted(1, 0)) {
 			state.pasteFigure();
+			state.removeFullRows();
 			state.newFigure();
 			return;
 		}

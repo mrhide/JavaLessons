@@ -50,4 +50,8 @@ public class State {
 				- figure.data[0].length / 2 + 1;
 	}
 
+	public void removeFullRows() {
+		field.removeFullRows();
+	}
+
 }

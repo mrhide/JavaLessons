@@ -27,7 +27,7 @@ public class Tetris {
 		Graphics2D graphics = (Graphics2D) panel.getGraphics();
 
 		Model model = new Model();
-		View view = new View(graphics);
+		View view = new View(panel);
 		final Controller controller = new Controller(model, view);
 		view.setEventProcessor(controller);
 		

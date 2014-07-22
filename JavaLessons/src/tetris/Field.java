@@ -38,4 +38,26 @@ public class Field {
 		}
 	}
 
+	public void removeFullRows() {
+		int[][] b = new int[box.length][box[0].length];
+		int pointer = b.length - 1;
+		for (int r = b.length - 1; r >= 0; r--) {
+			if(isFull(box[r])) {
+				continue;
+			}
+			b[pointer--] = box[r]; 
+		}
+		box = b;
+	}
+
+	private boolean isFull(int[] row) {
+
+		for (int i = 0; i < row.length; i++) {
+			if(row[i] == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }
